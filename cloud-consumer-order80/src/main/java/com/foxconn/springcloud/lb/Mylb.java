@@ -8,7 +8,8 @@ import org.springframework.stereotype.Component;
 
 //自己实现负载均衡的轮询算法
 //rest接口第几次请求数 % 服务器集群总数量 = 实际调用服务器位置下标  ，每次服务重启动后rest接口计数从1开始
-@Component
+
+@Component//每次返回的对象都是重新创建的，而@configuration则返回的是同一个对象
 public class Mylb implements MyLoadBalancer {
 	//默认初始值为0
 	private AtomicInteger integer = new AtomicInteger(0);
